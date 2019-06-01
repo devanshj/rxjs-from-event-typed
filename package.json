@@ -1,0 +1,31 @@
+{
+	"name": "rxjs-from-event-typed",
+	"version": "0.0.1",
+	"description": "RxJS's `fromEvent` with better typings",
+	"main": "dist/package/index.js",
+	"types": "dist/package/index.d.ts",
+	"files": [
+		"dist/package/**/*"
+	],
+	"dependencies": {},
+	"peerDependencies": {
+		"rxjs": "^6.0.0"
+	},
+	"devDependencies": {
+		"rxjs": "^6.5.2",
+		"typescript": "^3.4.5"
+	},
+	"scripts": {
+		"test": "tsc --noEmit && echo \"All tests passed.\"",
+		"build": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "github.com/devanshj/rxjs-from-event-typed"
+	},
+	"keywords": [
+		"rxjs"
+	],
+	"author": "Devansh Jethmalani",
+	"license": "MIT"
+}
