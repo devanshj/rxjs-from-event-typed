@@ -73,7 +73,7 @@ fromEvent(myEventEmitter, "nope");
 // errors
 ```
 
-Some more minor features will update :sleeping::grimacing:
+Some more minor features... I'll update :sleeping::grimacing:
 
 ## Todos
 
