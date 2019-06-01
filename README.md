@@ -1,10 +1,11 @@
-# rxjs-from-event-typed
+# rxjs-from-event-typed (Experimental)
 
 ## Installation
 
 ```shell
 npm i rxjs-from-event-typed
 ```
+**It's experimental and works with TS ^3.4.5**
 
 ## Features / Comparison with original `fromEvent`
 
