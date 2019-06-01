@@ -60,3 +60,4 @@ function fromEventStrict<
 };
 
 export { fromEvent, fromEventStrict };
+export * from "./types";
