@@ -74,5 +74,5 @@ Some more minor features will update :sleeping::grimacing:
 
 ## Todos
 
-- Add tests
+- Add (more) tests
 - Support for array-like of event emitters as event source (eg NodeList, etc)
