@@ -41,10 +41,10 @@ untypedFromEvent(myEventEmitter, "baz");
 fromEvent(myEventEmitter, "foo");
 // Observable<[string, number]>
 
-untypedFromEvent(myEventEmitter, "bar");
+fromEvent(myEventEmitter, "bar");
 // Observable<[MyCustomEvent, number]>
 
-untypedFromEvent(myEventEmitter, "baz");
+fromEvent(myEventEmitter, "baz");
 // Observable<MyCustomEvent>
 ```
 
