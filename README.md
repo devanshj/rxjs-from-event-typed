@@ -12,7 +12,7 @@ npm i rxjs-from-event-typed
 
 ```typescript
 import { fromEvent } from "rxjs-from-event-typed"
-import { untypedFromEvent } from "rxjs"
+import { fromEvent as untypedFromEvent } from "rxjs"
 
 untypedFromEvent(document.body, "click");
 // Observable<Event>
@@ -52,7 +52,7 @@ untypedFromEvent(myEventEmitter, "baz");
 
 ```typescript
 import { fromEvent } from "rxjs-from-event-typed"
-import { untypedFromEvent } from "rxjs"
+import { fromEvent as untypedFromEvent } from "rxjs"
 
 untypedFromEvent(document.body, "nope");
 // no error
