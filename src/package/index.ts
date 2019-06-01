@@ -13,7 +13,7 @@ function fromEvent<
 
 function fromEvent<
 	E extends Exclude<EventEmitter, DOMEventEmitter>,
-	N extends  EventName<E>
+	N extends EventName<E>
 >(
 	eventSource: E,
 	eventName: N
