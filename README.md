@@ -2,7 +2,9 @@
 
 ## Installation
 
-`npm i rxjs-from-event-typed`
+```
+npm i rxjs-from-event-typed
+```
 
 ## Features / Comparison with original `fromEvent`
 
