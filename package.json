@@ -1,6 +1,6 @@
 {
 	"name": "rxjs-from-event-typed",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "RxJS's `fromEvent` with better typings",
 	"main": "dist/package/index.js",
 	"types": "dist/package/index.d.ts",
