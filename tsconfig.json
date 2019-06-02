@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"target": "esnext",
 		"module": "commonjs",
+		"incremental": true,
 		"strict": true,
 		"noImplicitAny": true,
 		"esModuleInterop": true,
