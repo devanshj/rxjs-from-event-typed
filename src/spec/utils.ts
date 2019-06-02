@@ -1,10 +1,3 @@
-export type AreEqual<A, B> =
-	Exclude<A, B> extends never
-		? Exclude<B, A> extends never
-			? true
-			: false
-		: false;
-
 export type AssertTrue<T extends true> = T;
 
 export type FailingTests<T> = {

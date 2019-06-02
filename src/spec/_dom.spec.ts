@@ -1,5 +1,6 @@
 import { DOMEventEmitter } from "../package/types/dom";
-import { AreEqual, AssertTrue, FailingTests } from "./utils";
+import { AssertTrue, FailingTests } from "./utils";
+import { AreEqual } from "../shared/utils";
 import { EventName, ObservedValue, AssertedObservedValue } from "../package/types";
 
 type Tests = {

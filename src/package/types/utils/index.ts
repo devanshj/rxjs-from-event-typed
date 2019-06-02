@@ -12,14 +12,6 @@ export type IsSymbolLiteral<T> =
 			: true
 		: false;
 
-export type AreEqual<A, B> =
-	Exclude<A, B> extends never
-		? Exclude<B, A> extends never
-			? true
-			: false
-		: false;
-
-
 export type AssertedProp<T, K> =
 	K extends keyof T
 		? T[K]

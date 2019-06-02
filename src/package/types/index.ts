@@ -1,5 +1,6 @@
 import { DOMEventEmitter, DOMEventEmitterInferences } from "./dom";
-import { Union, IsStringLiteral, AssertedProp, IsSymbolLiteral, AreEqual } from "./utils";
+import { Union, IsStringLiteral, AssertedProp, IsSymbolLiteral } from "./utils";
+import { AreEqual, IsAny } from "../../shared/utils";
 import { NodeEventEmitter, NodeEventEmitterInferences } from "./node";
 import { JQueryEventEmitter, JQueryEventEmitterInferences } from "./jquery";
 
@@ -8,7 +9,7 @@ export type EventEmitter =
 	| JQueryEventEmitter
 	| NodeEventEmitter;
 
-type EventEmitterInferences<E> = 
+export type EventEmitterInferences<E> = 
 	| DOMEventEmitterInferences<E>
 	| JQueryEventEmitterInferences<E>
 	| NodeEventEmitterInferences<E>;
@@ -69,7 +70,9 @@ type TransformListenerArgs<A> =
 			? never
 			: A["length"] extends 1
 				? {} extends A[0]
-					? unknown
+					? IsAny<A[0]> extends false
+						? any
+						: unknown
 					: A[0]
 				: A
 		: never;

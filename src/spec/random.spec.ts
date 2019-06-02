@@ -1,4 +1,5 @@
-import { AreEqual, AssertTrue } from "./utils";
+import { AssertTrue } from "./utils";
+import { AreEqual } from "../shared/utils";
 import { ObservedValue, AssertedObservedValue } from "../package/types";
 
 type A = typeof document.body;
