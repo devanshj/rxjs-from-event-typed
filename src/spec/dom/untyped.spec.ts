@@ -31,8 +31,8 @@ type Tests<E extends EventEmitter = UntypedDOMEmitter> = [
 		EventName<E, true>
 	>,
 	AreEqual<
-		ExpectedObservedValue<EventName<E>>,
-		AssertedObservedValue<E, EventName<E>>
+		ExpectedObservedValue<string>,
+		AssertedObservedValue<E, string>
 	>
 ];
 

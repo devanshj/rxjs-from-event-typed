@@ -70,8 +70,12 @@ type Tests<E extends EventEmitter = TypedDOMEmitter> = [
 		EventName<E, true>
 	>,
 	AreEqual<
-		ExpectedObservedValue<EventName<E>>,
-		AssertedObservedValue<E, EventName<E>>
+		ExpectedObservedValue<"event-a">,
+		AssertedObservedValue<E, "event-a">
+	>,
+	AreEqual<
+		ExpectedObservedValue<"event-b">,
+		AssertedObservedValue<E, "event-b">
 	>
 ];
 

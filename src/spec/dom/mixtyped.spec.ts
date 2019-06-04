@@ -72,6 +72,7 @@ type ExpectedObservedValue<T> =
 	T extends string ? any :
 	never;
 
+
 type Tests<E extends EventEmitter = MixtypedDOMEmitter> = [
 	AreEqual<
 		ExpectedEventName,
@@ -82,8 +83,16 @@ type Tests<E extends EventEmitter = MixtypedDOMEmitter> = [
 		EventName<E, true>
 	>,
 	AreEqual<
-		ExpectedObservedValue<EventName<E>>,
-		AssertedObservedValue<E, EventName<E>>
+		ExpectedObservedValue<"event-a">,
+		AssertedObservedValue<E, "event-a">
+	>,
+	AreEqual<
+		ExpectedObservedValue<"event-b">,
+		AssertedObservedValue<E, "event-b">
+	>,
+	AreEqual<
+		ExpectedObservedValue<string>,
+		AssertedObservedValue<E, string>
 	>
 ];
 
