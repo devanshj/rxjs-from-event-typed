@@ -17,7 +17,7 @@ export type EventEmitterInferences<E> =
 export type EventName<
 	E extends EventEmitter,
 	S extends boolean = false,
-	G = EventEmitterInferences<E>
+	G extends EventEmitterInferences<E> = EventEmitterInferences<E>
 > = 
 	| Union<{
 		[I in keyof G]: TransformEventName<
@@ -49,7 +49,7 @@ type TransformEventName<N, E extends EventEmitter, S extends boolean> =
 export type ObservedValue<
 	E extends EventEmitter,
 	N extends EventName<E, boolean>,
-	G = EventEmitterInferences<E>
+	G extends EventEmitterInferences<E> = EventEmitterInferences<E>
 > = 
 	| Union<{
 		[I in keyof G]: 
@@ -70,7 +70,7 @@ type TransformListenerArgs<A> =
 			? never
 			: A["length"] extends 1
 				? {} extends A[0]
-					? IsAny<A[0]> extends false
+					? IsAny<A[0]> extends true
 						? any
 						: unknown
 					: A[0]

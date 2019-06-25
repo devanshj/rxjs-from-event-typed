@@ -1,5 +1,5 @@
 import { DOMEventEmitter } from "../../package/types/dom";
-import { EventName, AssertedObservedValue, EventEmitter } from "../../package";
+import { EventName, ObservedValue } from "../../package";
 import { AssertTrue } from "../utils";
 import { AreEqual } from "../../shared/utils";
 
@@ -72,27 +72,31 @@ type ExpectedObservedValue<T> =
 	T extends string ? any :
 	never;
 
+type E = MixtypedDOMEmitter;
+type ActualEventName = EventName<E>;
+type ActualStrictEventName = EventName<E, true>;
+type ActualObservedValue<N extends EventName<E>> = ObservedValue<E, N>;
 
-type Tests<E extends EventEmitter = MixtypedDOMEmitter> = [
+type Tests = [
 	AreEqual<
 		ExpectedEventName,
-		EventName<E>
+		ActualEventName
 	>,
 	AreEqual<
 		ExpectedStrictEventName,
-		EventName<E, true>
+		ActualStrictEventName
 	>,
 	AreEqual<
 		ExpectedObservedValue<"event-a">,
-		AssertedObservedValue<E, "event-a">
+		ActualObservedValue<"event-a">
 	>,
 	AreEqual<
 		ExpectedObservedValue<"event-b">,
-		AssertedObservedValue<E, "event-b">
+		ActualObservedValue<"event-b">
 	>,
 	AreEqual<
 		ExpectedObservedValue<string>,
-		AssertedObservedValue<E, string>
+		ActualObservedValue<string>
 	>
 ];
 
