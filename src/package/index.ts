@@ -1,6 +1,7 @@
 import { EventEmitter, EventName, ObservedValue } from "./types/";
-import { fromEvent as rxjsFromEvent, Observable } from "rxjs"
+import { fromEvent as rxjsFromEvent, Observable, from } from "rxjs"
 import { DOMEventEmitter, DOMEventListenerOptions } from "./types/dom/";
+import { ChildProcess } from "child_process";
 
 function fromEvent<
 	E extends DOMEventEmitter,
@@ -36,13 +37,13 @@ function fromEventStrict<
 	N extends  EventName<E, true>
 >(
 	eventSource: E,
-	eventName: N, 
+	eventName: N,
 	options?: DOMEventListenerOptions
 ): Observable<ObservedValue<E, N>>;
 
 function fromEventStrict<
 	E extends Exclude<EventEmitter, DOMEventEmitter>,
-	N extends  EventName<E, true>
+	N extends EventName<E, true>
 >(
 	eventSource: E,
 	eventName: N

@@ -1,3 +1,5 @@
+import { AreEqual } from "../../../shared/utils";
+
 export type IsStringLiteral<T> =
 	T extends string
 		? string extends T
@@ -36,6 +38,11 @@ export type Intersection<A> = AssertedProp<
 	}[keyof A]>
 	, "group"
 >
+
+export type Or<T extends any[]> =
+	boolean extends T[number] ? true :
+	true extends T[number] ? true :
+	false;
 
 export type StringToNumber<T> = 
 	T extends "0" ? 0 :

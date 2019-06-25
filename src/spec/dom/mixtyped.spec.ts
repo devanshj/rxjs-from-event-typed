@@ -97,6 +97,10 @@ type Tests = [
 	AreEqual<
 		ExpectedObservedValue<string>,
 		ActualObservedValue<string>
+	>,
+	AreEqual<
+		ExpectedObservedValue<"non-existent-event">,
+		ActualObservedValue<"non-existent-event">
 	>
 ];
 

@@ -1,5 +1,5 @@
 import { DOMEventEmitter, DOMEventEmitterInferences } from "./dom";
-import { Union, IsStringLiteral, AssertedProp, IsSymbolLiteral } from "./utils";
+import { Union, IsStringLiteral, AssertedProp, IsSymbolLiteral, Or } from "./utils";
 import { AreEqual, IsAny } from "../../shared/utils";
 import { NodeEventEmitter, NodeEventEmitterInferences } from "./node";
 import { JQueryEventEmitter, JQueryEventEmitterInferences } from "./jquery";
@@ -26,17 +26,16 @@ export type EventName<
 			S
 		>
 	}>
-
 	| (E extends HTMLElement
 		? keyof HTMLElementEventMap
 		: never);
 
 type TransformEventName<N, E extends EventEmitter, S extends boolean> = 
 	S extends true
-		? (
-			| IsStringLiteral<N>
-			| (E extends NodeEventEmitter ? IsSymbolLiteral<N> : never)
-		) extends true
+		? Or<[
+			IsStringLiteral<N>,
+			(E extends NodeEventEmitter ? IsSymbolLiteral<N> : never)
+		]> extends true
 			? N
 			: never
 		: Extract<N, 
@@ -52,14 +51,26 @@ export type ObservedValue<
 	G extends EventEmitterInferences<E> = EventEmitterInferences<E>
 > = 
 	| Union<{
-		[I in keyof G]: 
+		[I in keyof G]:
 			AreEqual<N, AssertedProp<G[I], "name">> extends true
 				? TransformListenerArgs<
 					AssertedProp<G[I], "args">
 				>
 				: never
 	}>
-
+	| (N extends EventName<E, true>
+		? never
+		: Union<{
+			[I in keyof G]:
+				{} extends AssertedProp<G[I], "name">
+					? never
+					: N extends AssertedProp<G[I], "name">
+						? TransformListenerArgs<
+							AssertedProp<G[I], "args">
+						>
+						: never
+		}>
+	)
 	| (E extends HTMLElement
 		? AssertedProp<HTMLElementEventMap, N>
 		: never);
