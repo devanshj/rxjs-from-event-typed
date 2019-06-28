@@ -1,3 +1,5 @@
+# Moved to [rxjs-from-emitter](https://github.com/devanshj/rxjs-from-emitter)
+
 # rxjs-from-event-typed (Experimental)
 
 ## Installation
