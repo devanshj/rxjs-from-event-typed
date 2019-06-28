@@ -1,4 +1,4 @@
-import { DOMEventEmitter } from "../../package/types/dom";
+import { DOMEventEmitterWithoutOptions } from "../../package/types/dom";
 import { EventName, ObservedValue } from "../../package";
 import { AssertTrue } from "../utils";
 import { AreEqual } from "../../shared/utils";
@@ -6,7 +6,7 @@ import { AreEqual } from "../../shared/utils";
 class CustomEventA { private _ = "" }
 class CustomEventB { private _ = "" }
 
-class MixtypedDOMEmitter implements DOMEventEmitter{
+class MixtypedDOMEmitter implements DOMEventEmitterWithoutOptions {
 
 	addEventListener(
 		eventName: string,
@@ -69,7 +69,7 @@ type ExpectedStrictEventName =
 type ExpectedObservedValue<T> =
 	T extends "event-a" ? CustomEventA :
 	T extends "event-b" ? CustomEventB :
-	T extends string ? any :
+	T extends string ? any[] :
 	never;
 
 type E = MixtypedDOMEmitter;

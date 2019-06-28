@@ -1,9 +1,9 @@
-import { DOMEventEmitter } from "../../package/types/dom";
-import { EventName, AssertedObservedValue, EventEmitter, EventEmitterInferences, ObservedValue } from "../../package";
+import { DOMEventEmitterWithoutOptions } from "../../package/types/dom";
+import { EventName, ObservedValue } from "../../package";
 import { AreEqual } from "../../shared/utils";
 import { AssertTrue } from "../utils";
 
-class UntypedDOMEmitter implements DOMEventEmitter{
+class UntypedDOMEmitter implements DOMEventEmitterWithoutOptions {
 
 	addEventListener(
 		eventName: string,

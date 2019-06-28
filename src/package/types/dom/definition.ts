@@ -1,14 +1,30 @@
-export type DOMEventEmitter<N = any, E = any> = {
+export type DOMEventEmitter<N extends any = any, A extends any[] = any[]> =
+	| DOMEventEmitterWithOptions<N, A>
+	| DOMEventEmitterWithoutOptions<N, A>
+
+export type DOMEventEmitterWithoutOptions<N = any, A extends any[] = any[]> = {
 	addEventListener: (
 		name: N,
-		listener: (event: E) => any,
-		options?: DOMEventListenerOptions
+		listener: (...args: A) => any
 	) => any;
 
 	removeEventListener: (
 		name: N,
-		listener: (event: E) => any,
-		options?: DOMEventListenerOptions
+		listener: (...args: A) => any
+	) => any;
+}
+
+export type DOMEventEmitterWithOptions<N = any, A extends any[] = any[]> = {
+	addEventListener: (
+		name: N,
+		listener: (...args: A) => any,
+		options: DOMEventListenerOptions
+	) => any;
+
+	removeEventListener: (
+		name: N,
+		listener: (...args: A) => any,
+		options: DOMEventListenerOptions
 	) => any;
 }
 

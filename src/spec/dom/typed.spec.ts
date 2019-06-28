@@ -1,4 +1,4 @@
-import { DOMEventEmitter } from "../../package/types/dom";
+import { DOMEventEmitterWithoutOptions } from "../../package/types/dom";
 import { EventName, ObservedValue } from "../../package";
 import { AssertTrue } from "../utils";
 import { AreEqual } from "../../shared/utils";
@@ -6,7 +6,7 @@ import { AreEqual } from "../../shared/utils";
 class CustomEventA { private _ = "" }
 class CustomEventB { private _ = "" }
 
-class TypedDOMEmitter implements DOMEventEmitter{
+class TypedDOMEmitter implements DOMEventEmitterWithoutOptions {
 
 	addEventListener(
 		eventName: "event-a",

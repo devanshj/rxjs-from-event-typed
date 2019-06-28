@@ -1,10 +1,3 @@
-type _AreEqual<A, B> =
-	Exclude<A, B> extends never
-		? Exclude<B, A> extends never
-			? true
-			: false
-		: false
-
 export type AreEqual<A, B> =
 	IsAny<A> extends true
 		? IsAny<B> extends true
@@ -18,6 +11,13 @@ export type AreEqual<A, B> =
 
 export type IsAny<T> =
 	_AreEqual<
-		_AreEqual<T, "foo">,
+		_AreEqual<T, "literally-anything-except-any">,
 		boolean
 	>;
+
+type _AreEqual<A, B> =
+	Exclude<A, B> extends never
+		? Exclude<B, A> extends never
+			? true
+			: false
+		: false;

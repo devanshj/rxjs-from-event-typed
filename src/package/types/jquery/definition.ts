@@ -1,4 +1,4 @@
-export type JQueryEventEmitter<N = any, A extends unknown[] = any> = {
+export type JQueryEventEmitter<N = any, A extends any[] = any[]> = {
 	on: (
 		name: N,
 		listener: (...args: A) => any

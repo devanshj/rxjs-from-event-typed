@@ -1,16 +1,16 @@
 export type NodeEventEmitterGeneric<
-	N0 = any, A0 extends unknown[] = any,
-	N1 = any, A1 extends unknown[] = any,
-	N2 = any, A2 extends unknown[] = any,
-	N3 = any, A3 extends unknown[] = any,
-	N4 = any, A4 extends unknown[] = any,
-	N5 = any, A5 extends unknown[] = any,
-	N6 = any, A6 extends unknown[] = any,
-	N7 = any, A7 extends unknown[] = any,
-	N8 = any, A8 extends unknown[] = any,
-	N9 = any, A9 extends unknown[] = any,
-	N10 = any, A10 extends unknown[] = any,
-	N11 = any, A11 extends unknown[] = any
+	N0, A0 extends any[],
+	N1, A1 extends any[],
+	N2, A2 extends any[],
+	N3, A3 extends any[],
+	N4, A4 extends any[],
+	N5, A5 extends any[],
+	N6, A6 extends any[],
+	N7, A7 extends any[],
+	N8, A8 extends any[],
+	N9, A9 extends any[],
+	N10, A10 extends any[],
+	N11, A11 extends any[]
 > = {
 
 	addListener(

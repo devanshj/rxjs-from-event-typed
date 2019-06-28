@@ -1,5 +1,3 @@
-import { AreEqual } from "../../../shared/utils";
-
 export type IsStringLiteral<T> =
 	T extends string
 		? string extends T
@@ -14,6 +12,20 @@ export type IsSymbolLiteral<T> =
 			: true
 		: false;
 
+export type IsNumberLiteral<T> =
+	T extends symbol
+		? symbol extends T
+			? false
+			: true
+		: false;
+
+export type IsLiteral<T> =
+	Or<[
+		IsStringLiteral<T>,
+		IsNumberLiteral<T>,
+		IsSymbolLiteral<T>
+	]>
+
 export type AssertedProp<T, K> =
 	K extends keyof T
 		? T[K]
@@ -24,7 +36,8 @@ export type Union<A> =
 		? U
 		: never;
 
-// from the one and only jcalz B)
+/*
+// from jcalz :)
 // https://stackoverflow.com/a/50375286/9591609
 
 type UnionToIntersection<U> = 
@@ -38,24 +51,9 @@ export type Intersection<A> = AssertedProp<
 	}[keyof A]>
 	, "group"
 >
+*/
 
 export type Or<T extends any[]> =
 	boolean extends T[number] ? true :
 	true extends T[number] ? true :
 	false;
-
-export type StringToNumber<T> = 
-	T extends "0" ? 0 :
-	T extends "1" ? 1 :
-	T extends "2" ? 2 :
-	T extends "3" ? 3 :
-	T extends "4" ? 4 :
-	T extends "5" ? 5 :
-	T extends "6" ? 6 :
-	T extends "7" ? 7 :
-	T extends "8" ? 8 :
-	T extends "9" ? 9 :
-	T extends "10" ? 10 :
-	T extends "11" ? 11 :
-	T extends "12" ? 12 :
-	number;

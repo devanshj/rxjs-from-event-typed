@@ -1,64 +1,41 @@
-import { EventEmitter, EventName, ObservedValue } from "./types/";
-import { fromEvent as rxjsFromEvent, Observable, from } from "rxjs"
-import { DOMEventEmitter, DOMEventListenerOptions } from "./types/dom/";
-import { ChildProcess } from "child_process";
+import { EventName, ObservedValue, EventEmitterWithoutOptions, EventEmitterWithOptions } from "./types/";
+import { fromEvent, Observable } from "rxjs"
+import { DOMEventListenerOptions } from "./types/dom/";
 
-function fromEvent<
-	E extends DOMEventEmitter,
-	N extends  EventName<E>
->(
-	eventSource: E,
-	eventName: N, 
-	options?: DOMEventListenerOptions
-): Observable<ObservedValue<E, N>>;
+type FromEmitter = {
+	<E extends EventEmitterWithoutOptions>
+		(emitter: E):
+			{
+				event
+					<N extends EventName<E>>
+					(eventName: N):
+						Observable<ObservedValue<E, N>>
 
-function fromEvent<
-	E extends Exclude<EventEmitter, DOMEventEmitter>,
-	N extends EventName<E>
->(
-	eventSource: E,
-	eventName: N
-): Observable<ObservedValue<E, N>>;
+				eventStrict
+					<N extends EventName<E, true>>
+					(eventName: N):
+						Observable<ObservedValue<E, N>>
+			}
 
-function fromEvent<
-	E extends EventEmitter,
-	N extends  EventName<E>
->(
-	eventSource: E,
-	eventName: N, 
-	options?: DOMEventListenerOptions
-): Observable<ObservedValue<E, N>> {
-	return rxjsFromEvent(eventSource as any, eventName as any, options as any);
-};
+	<E extends EventEmitterWithOptions>
+		(emitter: E):
+			{
+				event
+					<N extends EventName<E>>
+					(eventName: N, options?: DOMEventListenerOptions):
+						Observable<ObservedValue<E, N>>
 
+				eventStrict
+					<N extends EventName<E, true>>
+					(eventName: N, options?: DOMEventListenerOptions):
+						Observable<ObservedValue<E, N>>
+			}
+}
 
-function fromEventStrict<
-	E extends DOMEventEmitter,
-	N extends  EventName<E, true>
->(
-	eventSource: E,
-	eventName: N,
-	options?: DOMEventListenerOptions
-): Observable<ObservedValue<E, N>>;
+export const fromEmitter =
+	((emitter: any) =>
+		(eventName: any, options?: any) =>
+			fromEvent(emitter, eventName, options)
+	) as unknown as FromEmitter;
 
-function fromEventStrict<
-	E extends Exclude<EventEmitter, DOMEventEmitter>,
-	N extends EventName<E, true>
->(
-	eventSource: E,
-	eventName: N
-): Observable<ObservedValue<E, N>>;
-
-function fromEventStrict<
-	E extends EventEmitter,
-	N extends EventName<E, true>
->(
-	eventSource: E,
-	eventName: N, 
-	options?: DOMEventListenerOptions
-): Observable<ObservedValue<E, N>> {
-	return rxjsFromEvent(eventSource as any, eventName as any, options as any);
-};
-
-export { fromEvent, fromEventStrict };
 export * from "./types";

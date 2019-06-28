@@ -1,13 +1,20 @@
-import { DOMEventEmitter, DOMEventEmitterInferences } from "./dom";
-import { Union, IsStringLiteral, AssertedProp, IsSymbolLiteral, Or } from "./utils";
+import { DOMEventEmitterInferences, DOMEventEmitterWithOptions, DOMEventEmitterWithoutOptions } from "./dom";
+import { Union, AssertedProp, IsLiteral } from "./utils";
 import { AreEqual, IsAny } from "../../shared/utils";
 import { NodeEventEmitter, NodeEventEmitterInferences } from "./node";
 import { JQueryEventEmitter, JQueryEventEmitterInferences } from "./jquery";
 
-export type EventEmitter = 
-	| DOMEventEmitter
+export type EventEmitterWithoutOptions = 
+	| DOMEventEmitterWithoutOptions
 	| JQueryEventEmitter
 	| NodeEventEmitter;
+
+export type EventEmitterWithOptions = 
+	| DOMEventEmitterWithOptions;
+
+export type EventEmitter = 
+	| EventEmitterWithoutOptions
+	| EventEmitterWithOptions;
 
 export type EventEmitterInferences<E> = 
 	| DOMEventEmitterInferences<E>
@@ -22,7 +29,6 @@ export type EventName<
 	| Union<{
 		[I in keyof G]: TransformEventName<
 			AssertedProp<G[I], "name">,
-			E,
 			S
 		>
 	}>
@@ -30,18 +36,14 @@ export type EventName<
 		? keyof HTMLElementEventMap
 		: never);
 
-type TransformEventName<N, E extends EventEmitter, S extends boolean> = 
+type TransformEventName<N, S extends boolean> = 
 	S extends true
-		? Or<[
-			IsStringLiteral<N>,
-			(E extends NodeEventEmitter ? IsSymbolLiteral<N> : never)
-		]> extends true
+		? IsLiteral<N> extends true
 			? N
 			: never
-		: Extract<N, 
-			| string
-			| (E extends NodeEventEmitter ? symbol : never)
-		>;
+		: unknown extends N
+			? never
+			: N;
 
 
 

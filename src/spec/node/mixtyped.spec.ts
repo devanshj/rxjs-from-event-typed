@@ -1,4 +1,4 @@
-import { NodeEventEmitter, NodeEventEmitterInferences } from "../../package/types/node";
+import { NodeEventEmitter } from "../../package/types/node";
 import { EventName, ObservedValue } from "../../package";
 import { AssertTrue } from "../utils";
 import { AreEqual } from "../../shared/utils";
